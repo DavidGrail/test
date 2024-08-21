@@ -10,15 +10,48 @@
             body{
                 background-color: aqua;
             }
-            #halloWelt{
-                font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            #dino{
                 position:absolute;
+                width: 150px;
             }
         </style>
-        <h1 id="halloWelt"> Hallo David </h1> 
-        <script>
-            var halloWelt=document.getElementById("halloWelt");
-            halloWelt.style.top = "200px";
+        <img id="dino" src="Dino.png"/>
+        <script> 
+            var dino=document.getElementById("dino");
+            var y = 100;
+            var x = 0;
+            var deltaX = 0;
+            var deltaY = 0;
+            document.onkeydown = function(evt){
+                if(evt.key == "ArrowUp"){
+                    deltaY = -10;
+                }
+                if(evt.key == "ArrowDown"){
+                    deltaY = 10;
+                }
+                if(evt.key == "ArrowLeft"){
+                    deltaX = -10;
+                }
+                if(evt.key == "ArrowRight"){
+                    deltaX = 10;
+                }
+            }
+            document.onkeyup = function(){
+                deltaX = 0;
+                deltaY = 0;
+            }
+            function animation() {
+                if (deltaX != 0){
+                    x += deltaX;
+                }
+                if (deltaY){
+                    y += deltaY;
+                }
+                dino.style.left = x + "px";
+                dino.style.top = y + "px";
+                requestAnimationFrame(animation);
+            }
+            requestAnimationFrame(animation);
         </script>
     </body>
 </html>
