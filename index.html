@@ -14,14 +14,25 @@
                 position:absolute;
                 width: 150px;
             }
+            #dino2{
+                position: absolute;
+                width: 150px;
+            }
         </style>
         <img id="dino" src="Dino.png"/>
+        <img id="dino2" src="Dino2.png"/>
         <script> 
-            var dino=document.getElementById("dino");
-            var y = 100;
+            var dino = document.getElementById("dino");
+            var dino2 = document.getElementById("dino2");
+            var y = 0;
             var x = 0;
             var deltaX = 0;
             var deltaY = 0;
+            var x2 = 0;
+            var y2 = 0;
+            var deltaX2 = 0;
+            var deltaY2 = 0;
+
             document.onkeydown = function(evt){
                 if(evt.key == "ArrowUp"){
                     deltaY = -10;
@@ -35,13 +46,30 @@
                 if(evt.key == "ArrowRight"){
                     deltaX = 10;
                 }
+
+                // Dino 2
+
+                if(evt.key == "w"){
+                    deltaY2 = -10;
+                }
+                if(evt.key == "s"){
+                    deltaY2 = 10;
+                }
+                if(evt.key == "a"){
+                    deltaX2 = -10;
+                }
+                if(evt.key == "d"){
+                    deltaX2 = 10;
+                }
             }
             document.onkeyup = function(){
                 deltaX = 0;
                 deltaY = 0;
+                deltaX2 = 0;
+                deltaY2 = 0;
             }
             function animation() {
-                if (deltaX != 0){
+                if (deltaX){
                     x += deltaX;
                 }
                 if (deltaY){
@@ -49,6 +77,15 @@
                 }
                 dino.style.left = x + "px";
                 dino.style.top = y + "px";
+
+                if (deltaX2){
+                    x2 += deltaX2;
+                }
+                if (deltaY2){
+                    y2 += deltaY2;
+                }
+                dino2.style.left = x2 + "px";
+                dino2.style.top = y2 + "px";
                 requestAnimationFrame(animation);
             }
             requestAnimationFrame(animation);
